@@ -1,6 +1,6 @@
 'use strict';
 
-registerRouteData('ec-employee', [{
+registerRouteData('universal-employee', [{
     stateName: 'employeeRecord.credentials',
     url: '/credentials',
     $permissions: function $permissions(permissionSvc) {
