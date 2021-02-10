@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Redirecting...</title>
+</head>
+<body>
+  <script>
+    var host = window.location.host;
+    var protocol = window.location.protocol;
+    var assetStorageKey = 'assets.uiModules.universal-employee';
+    var assetValue = window.encodeURIComponent(assetStorageKey + '|>' + protocol + '//' + host);
+    var stageUrl = 'https://supersuit.flqa.net/universal-employee/';
+    location.href = stageUrl + '?setAsset=' + assetValue;
+  </script>
+</body>
+</html>
