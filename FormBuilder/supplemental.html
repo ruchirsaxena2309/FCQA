@@ -1,0 +1,35 @@
+<div ng-class="vm.formfieldvalues ? 'cmp-supplemental' : ''" ng-show="vm.visibility">
+	<!-- TEMPLATE -->
+	<dl ng-if="!vm.formfieldvalues">
+		<h4 ng-if="field._fieldType == 'readOnlyHeading'" class="field-header">
+			{{field._label}} <em>Read-only</em>
+		</h4>
+		<p ng-if="field._fieldType == 'instructions'" ng-bind="field._label"></p>
+
+		<div ng-if="go.checkIfHeadingOrInstructions(field)">
+			<dt ng-bind="field._label" class="field-label"></dt>
+			<dd ng-if="field._fieldType == 'readOnlyDate'">--/--/--</dd>
+			<dd ng-if="field._fieldType != 'readOnlyDate'">--</dd>
+		</div>
+
+	</dl>
+	<!-- INSTANCE -->
+	<dl ng-if="vm.formfieldvalues">
+		<div ng-repeat="subField in field.config.fields" ng-style="{'width': subField.config.width}" class="assignment-property" ng-show="subField._active">
+			<h4 ng-if="subField._fieldType == 'readOnlyHeading'" class="field-header">
+				{{subField._label}} <em>Read-only</em>
+			</h4>
+			<p ng-if="field._fieldType == 'instructions'" ng-bind="field._label"></p>
+			<h5 ng-if="subField._fieldType == 'readOnlySubheading'" class="sub-field-header">
+				{{field._label}} <em>Read-only</em>
+			</h5>
+			<!-- LABEL -->
+			<dt ng-if="go.checkIfHeadingOrInstructions(subField)" class="field-label" ng-bind="subField._label"></dt>
+			<!-- 'REGULAR' FIELDS -->
+			<dd ng-if="go.checkIfHeadingOrInstructions(subField) && subField._fieldType != 'readOnlyDate'" class="field-value"ng-bind="formfieldvalues[subField._formFieldValueProperty] ? formfieldvalues[subField._formFieldValueProperty] : '--'">
+			</dd>
+			<dd ng-if="go.checkIfHeadingOrInstructions(subField) && subField._fieldType == 'readOnlyDate'" class="field-value" ng-bind="formfieldvalues[subField._formFieldValueProperty] ? formfieldvalues[subField._formFieldValueProperty] : '--/--/--'"></dd>
+		</div>
+	</dl>
+</div>
+
